@@ -1,0 +1,81 @@
+/* GLOBAL */
+* {
+    margin: 0;
+    padding: 0;
+    /* sử dụng để tính toán độ rộng một item. Thuộc tính box-sizing chỉ có tác dụng với width + padding */
+    box-sizing: border-box;
+}
+
+html,
+body {
+    background-color: #faf4f2;
+}
+
+/* HEADER */
+.header {
+    background-color: #f8e1db;
+    padding: 20px 70px;
+}
+
+.header ul {
+    padding-left: 0;
+}
+
+.header ul li {
+    /* bỏ dấu chấm tròn */
+    list-style: none;
+    display: inline;
+    /* khoảng cách giữa các thành phần html */
+    /* margin:10px; */
+    /* khoảng cách từ nội dung content ra tới ngoài viền border */
+    /* padding: 10px; */
+    margin-right: 15px;
+}
+
+.header ul li a {
+    /* bỏ đường gạch chân chữ */
+    text-decoration: none;
+    color: black;
+}
+
+.header ul li.active a {
+    color: #e76f51;
+}
+
+/* CAROUSEL */
+.carousel {
+    background-image: url(./../images/BG.png);
+    height: 500px;
+    /* background-size để tấm hình tràn hết thẻ chứa nó */
+    background-size: cover;
+    /* background-repeat để tấm hình không bị lặp lại */
+    background-repeat: no-repeat;
+    /* background-position vị trí tấm hình đặt ở trung tâm */
+    background-position: center;
+    /* border-radius đường bo góc của đường viền giá trị lần lượt là top-left/top-right/bottom-right/bottom-left */
+    border-radius: 0 0 200px 200px;
+    /* position vị trí của thẻ cha */
+    position: relative;
+}
+
+.carousel .carousel__item {
+    /* float toàn bộ nội dung được sắp xếp từ bên trái qua, đủ hàng thì sẽ rớt xuống hàng tiếp theo */
+    float: left;
+    width: 25%;
+    text-align: center;
+    /* margin: 20px; */
+    padding: 20px;
+}
+
+.carousel .carousel__item .carousel__text {
+    background-color: white;
+    border-radius: 40px 40px 40px 40px;
+    /* margin-top: 400px; */
+    padding: 50px;
+}
+
+.carousel .carousel__content {
+    /* position vị trí của thẻ con luôn luôn phải đi kèm 4 góc top-right-bottom-left */
+    position: absolute;
+    bottom: -120px;
+}
