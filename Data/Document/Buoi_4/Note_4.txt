@@ -1,0 +1,3 @@
+display: grid;
+grid-column-template: 2|4 or 2|span 2	
+repeat(4,1fr)

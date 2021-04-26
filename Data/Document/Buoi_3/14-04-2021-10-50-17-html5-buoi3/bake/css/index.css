@@ -1,0 +1,82 @@
+/* GLOBAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+}
+
+header,
+footer,
+section,
+aside,
+nav,
+main,
+article,
+figure {
+    display: block;
+}
+
+/* HEADER */
+header {
+    /* sử dụng css3 display: flex thay cho thuộc tính cũ float, đưa nội dung lên cùng một hàng */
+    display: flex;
+    /* canh chỉnh theo chiều dọc */
+    align-items: center;
+    /* canh chỉnh theo chiều ngang */
+    justify-content: space-around;
+    background-color: #4e2a84;
+    padding: 30px 0;
+    font-weight: bold;
+}
+
+header a {
+    text-decoration: none;
+    color: white;
+}
+
+header nav ul li {
+    list-style: none;
+    display: inline;
+    padding-right: 30px;
+}
+
+header nav ul li a {
+    transition: all .5s;
+
+}
+
+.header__logo {
+    font-size: 2rem;
+}
+
+header nav ul li.active a,
+header nav ul li a:hover {
+    color: #ff0e83;
+    font-size: 50px;
+    background-color: black;
+}
+
+#carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(./../images/b3.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 700px;
+}
+
+.carousel__button {
+    color: white;
+    text-align: center;
+    background-color: pink;
+    border: 2px solid white;
+    border-radius: 5px;
+}

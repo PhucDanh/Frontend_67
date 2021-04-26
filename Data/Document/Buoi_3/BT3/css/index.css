@@ -60,6 +60,7 @@ header nav ul li.active a, header nav ul li a:hover {
     height: 500px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 #carousel .carousel_content {
@@ -69,4 +70,230 @@ header nav ul li.active a, header nav ul li a:hover {
 #carousel h1 {
     padding: 50px 0px 50px 0px;
     font-size: 100px;
+}
+
+#carousel button {
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: #ff0e83;
+    border: 1px solid #fff;
+    /* bo duong vien cua trinh duyet */
+    outline: none;
+    padding: 13px 32px;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: all .5s;
+}
+
+#carousel button:hover {
+    color: black;
+    border: 1px solid #ff0e83;
+    background-color: white;
+}
+
+#carousel .carousel_content {
+    text-align: center;
+    color: white;
+}
+
+/* INFOR */
+.infor_content {
+    display: grid;
+    /* grid-template-columns: 25% 25% 25% 25%; */
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.infor_item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.infor_content img {
+    display: block;
+    width: 100%;
+}
+
+.image_1 {
+    /* grid-column: 2 / 4; */
+    grid-column: 2 / span 2;
+}
+
+.content_2 {
+    grid-column: 1 / span 2;
+}
+
+.image_4 {
+    grid-column: 3 / span 2;
+}
+
+.infor_item {
+    background-size: cover;
+    color: white;
+    /* padding: 5px 25px; */
+}
+
+.infor_item div {
+    padding: 5px 25px;
+}
+
+.infor_item:first-child {
+    background-color: #4e2a84;
+}
+
+.infor_item:nth-child(3) {
+    background-color: #ff0e83;
+}
+
+.infor_item:nth-child(4) {
+    background-color: #ed6498;
+}
+
+.infor_item:nth-child(6) {
+    background-color: #836eaa;
+}
+
+.infor_item:nth-child(8) {
+    background-color: #4e2a84;
+}
+
+.infor_item p {
+    font-size: 14px;
+    color: #c1c1c1;
+    letter-spacing: 1px;
+    line-height: 27px;
+    padding-top: 15px;
+}
+
+/* NUMBER */
+.number_content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+}
+
+.number_item {
+    padding: 40px;
+}
+
+.number_item p {
+    font-weight: 500;
+}
+
+/* SERVICE */
+#service {
+    background-image: url(../images/images/s1.jpg);
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.service_items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.service_content h1 {
+    color: white;
+    font-size: 3rem;
+    letter-spacing: 2px;
+    padding: 40px;
+}
+
+.service_items .service_item i {
+    background-color: white;
+    color: #4e2a84;
+    margin: 5px 30px;
+    border-style: solid;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    border-radius: 50%;
+    border: 1px solid #4e2a84;
+    transition: all .5s;
+    font-size: 2.5rem;
+}
+
+.service_items .service_item:hover i {
+    color: #ff0e83;
+    border: 1px solid #ff0e83;
+}
+
+.service_items .service_item button {
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: #ff0e83;
+    border: 1px solid #fff;
+    /* bo duong vien cua trinh duyet */
+    outline: none;
+    padding: 13px 32px;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: all .5s;
+}
+
+.service_items .service_item button:hover {
+    color: black;
+    border: 1px solid #ff0e83;
+    background-color: white;
+}
+
+/* GALLERY */
+#gallery {
+    text-align: center;
+}
+
+.gallery_content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+.gallery_item {
+    position: relative;
+    background-color: #3085a3;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    display: block;
+    text-align: right;
+}
+.gallery_item h2, p {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.gallery_item:first-child {
+    grid-column: 1 / span 2;
+}
+
+.gallery_item:last-child {
+    grid-column: 3 / span 2;
+}
+
+.gallery_item img {
+    display: block;
+    width: 100%;
+}
+
+.gallery_item h2 {
+    font-weight: 10px;
+}
+
+.gallery_item h2 span {
+    font-weight: 800px;
 }
