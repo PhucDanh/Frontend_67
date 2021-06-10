@@ -1,0 +1,45 @@
+// thêm style các thành phần text, button hiển thị trên web
+@mixin styleText($color,$fs,$fw) {
+    color: $color;
+    font-size: $fs;
+    font-weight: $fw;
+}
+@mixin styleButtonWhite($bg-color,$color,$pd-y, $pd-x,$border-color) {
+    background-color: $bg-color;
+    color: $color;
+    padding: $pd-y $pd-x;
+    border: 1px solid $border-color;
+}
+@mixin styleButtonWhiteHover($color){
+    color:$color;
+}
+
+@mixin styleButtonRed($bg-color,$pd-y, $pd-x,$radius,$border-color) {
+    background-color: $bg-color;
+    padding: $pd-y $pd-x;
+    border-radius: $radius;
+    border: 1px solid $border-color;
+    // tạo hiệu ứng chuyển động
+    transition: all .5s;
+}
+@mixin styleButtonRedHover($bg-color,$color){
+    background-color: $bg-color;
+    border-color: $bg-color;
+    color:$color;
+}
+
+// Responsive
+// $screen: chứa tên màn hình
+@mixin  responsive($screen) {
+    // lấy giá trị dựa theo kích thước màn hình
+    // kiểm tra giá trị tên màn hình có tồn tại hay không, và có tồn tại ở biến $breakpoints
+    @if(map-has-key($map: $breakpoints, $key: $screen )){
+        // hợp lệ
+        $value: map-get($map: $breakpoints , $key: $screen);
+        @media screen and (max-width: $value){
+            @content;
+        }
+    }@else{
+        @warn "Màn hình không hợp lệ";
+    }
+}

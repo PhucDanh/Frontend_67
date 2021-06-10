@@ -1,0 +1,50 @@
+// them style cho cac thanh phan text button hien thi tren trang web
+@mixin styleText($color,$fs,$fw) {
+    color: $color;
+    font-size: $fs;
+    font-weight: $fw;
+}
+
+@mixin styleButtonWhite($bg-color, $color, $pd-y, $pd-x, $border-color, $radius) {
+    background-color: $bg-color;
+    color: $color;
+    padding: $pd-y $pd-x;
+    border: 1px solid $border-color;
+    border-radius: $radius;
+}
+
+@mixin styleButtonWhiteHover($color,$border-color) {
+    color: $color;
+    border-color: $border-color;
+}
+
+@mixin styleButtonRed($bg-color, $color, $pd-y, $pd-x, $border-color, $radius) {
+    background-color: $bg-color;
+    color: $color;
+    padding: $pd-y $pd-x;
+    border: 1px solid $border-color;
+    border-radius: $radius;
+    // tao hieu ung chuyen dong 
+    transition: all .5s;
+}
+
+@mixin styleButtonRedHover($color,$bg-color) {
+    background-color: $bg-color;
+    border-color: $bg-color;
+    color: $color;
+}
+
+// reponsive
+@mixin responsive($screen) {
+    // lay gia tri dua theo kich thuoc man hinh
+    // kiem tra gia tri ten man hinh co ton tai hay khong, va co ton tai o bien @breakpoint 
+    @if (map-has-key($map: $breakpoints, $key: $screen)) {
+        // validation value
+        $value: map-get($map: $breakpoints, $key: $screen);
+        @media screen and (max-width: $value) {
+            @content;
+        }
+    }@else {
+        @warn "Man hinh khong hop le";
+    }
+}

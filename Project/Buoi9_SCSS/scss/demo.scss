@@ -1,0 +1,50 @@
+h1 {
+    background-color: red;
+}
+
+// Nesting selector
+// chi goi toi cap 5
+
+.sec1 {
+    h2 {
+        color: blue;
+    }
+    button {
+        background-color: yellow;
+        // &: dai dien cho selector chua no
+        &:hover {
+            background-color: #00cdce;
+        }
+    }
+}
+
+.sec2 {
+    @extend .sec1;
+}
+
+@mixin style {
+    h2 {
+        color: #00cdce;
+    }
+    button {
+        background-color: orange;
+    }
+}
+
+.sec3 {
+    @include style();
+}
+
+// MIXIN co tham so 
+@mixin style1($color, $bg-color) {
+    h2 {
+        color: $color;
+    }
+    button {
+        background-color: $bg-color;
+    }
+}
+
+.sec4 {
+    @include style1(red, green);
+}
