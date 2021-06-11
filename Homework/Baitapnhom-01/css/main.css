@@ -14,7 +14,6 @@ img {
 html, body {
   font-family: 'Roboto', sans-serif;
   background-color: black;
-  font-family: "Daimler CAC";
 }
 
 @font-face {
@@ -46,20 +45,23 @@ header {
 }
 
 .image {
-  position: relative;
-  width: 100px;
+  margin-left: 50px;
+  width: 300px;
+}
+
+.image .navbar-brand {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
 }
 
 .navbar-brand img.navbar__logo {
-  position: absolute;
-  top: -15px;
-  left: 20px;
+  grid-area: 1 / 1 / span 3 / span 1;
 }
 
 .navbar-brand img.navbar__name {
-  position: absolute;
-  top: 20px;
-  left: 110px;
+  width: 80%;
+  grid-area: 2 / 3 / span 1 / span 2;
 }
 
 .navbar-collapse {
@@ -147,14 +149,14 @@ header {
 @keyframes arrowDown {
   0% {
     opacity: 0;
-    transform: translateY(0);
+    transform: translateY(-40px);
   }
   50% {
-    transform: translateY(40px);
+    transform: translateY(-20px);
   }
   100% {
     opacity: 1;
-    transform: translateY(40px);
+    transform: translateY(0px);
   }
 }
 
@@ -281,6 +283,7 @@ header {
 
 @media screen and (max-width: 2000px) {
   #navTabs {
+    font-family: "Daimler CAC";
     margin: auto 100px;
   }
   #navTabs p {
@@ -575,6 +578,7 @@ header {
 }
 
 #footnotes {
+  font-family: "Daimler CAC";
   margin-top: 80px;
   color: #fff;
   font-size: 14px;
