@@ -91,7 +91,6 @@
                             <i class="fa fa-search"></i>
                             <i class="fa fa-bars"></i>
                         </div>
-
                     </div>
                 </nav>
             </div>
@@ -184,7 +183,6 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-
         </section>
         <section class="search">
             <div class="search__box">
@@ -1844,11 +1842,14 @@
             src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
-        <script src="./js/index.js"></script>
+        <!-- <script src="./js/index.js"></script> -->
 
          <!-- BACK TO TOP -->
         <script src="./js/main.js"></script>
         <script src="./js/util.js"></script>
+
+        <!-- Show on scroll -->
+        <!-- <script src="js/scroll-effect.js"></script> -->
 
         <!-- Button function ShowMore-->
         <script>
@@ -1884,6 +1885,22 @@
                 console.log(btn_videos);
                 console.log(videosItemShow);
                 console.log("videos clicked");
+            }
+        </script>
+
+        <!-- Scroll effect for header -->
+        <script>
+            var prevScrollpos = window.pageYOffset;
+            window.onscroll = function() {
+                var currentScrollPos = window.pageYOffset;
+                if (prevScrollpos > currentScrollPos) {
+                    document.querySelector("header").style.top = "0px";
+                } else {
+                    if(currentScrollPos >= 200) {
+                        document.querySelector("header").style.top = "-150px";
+                    }
+                }
+                prevScrollpos = currentScrollPos;
             }
         </script>
     </body>

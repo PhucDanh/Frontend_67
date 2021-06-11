@@ -2,8 +2,15 @@
     display: flex;
     justify-content: space-between;
 }
+
 header {
-    position: relative;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: block;
+    transition: top 0.5s;
+    z-index: 100;
+    background-color: black;
 }
 
 .top__right {
@@ -14,7 +21,6 @@ header {
     .supplier span.active{
         margin-right: $mg-3;
     }
-    
 }
 
 .image {
