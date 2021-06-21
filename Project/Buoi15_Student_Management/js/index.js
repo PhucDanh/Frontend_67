@@ -20,47 +20,48 @@ var studentArr = [];
 
 // // function 1: Thêm sinh viên
 // function addStudent() {}
-var addStudent = function() {
-    if(validateForm() === false) {
-        return;
-    }
+// var addStudent = function() {
+//     if(validateForm() === 0) {
+//         return;
+//     }
+//     // console.log(validateForm());
 
-    // DOM input, lấy value
-    // var id = document.getElementById("txtMaSV").value;
-    // var name = document.getElementById("txtTenSV").value;
-    // var type = document.getElementById("loaiSV").value;
-    // var math = document.getElementById("txtDiemToan").value;
-    // var physic = document.getElementById("txtDiemLy").value;
-    // var science = document.getElementById("txtDiemHoa").value;
-    // var training = document.getElementById("txtDiemRenLuyen").value;
-    var id = document.querySelector("#txtMaSV").value;
-    var name = document.querySelector("#txtTenSV").value;
-    var type = document.querySelector("#loaiSV").value;
-    var math = +document.querySelector("#txtDiemToan").value;
-    var physic = +document.querySelector("#txtDiemLy").value;
-    var science = +document.querySelector("#txtDiemHoa").value;
-    var training = +document.querySelector("#txtDiemRenLuyen").value;
+//     // DOM input, lấy value
+//     // var id = document.getElementById("txtMaSV").value;
+//     // var name = document.getElementById("txtTenSV").value;
+//     // var type = document.getElementById("loaiSV").value;
+//     // var math = document.getElementById("txtDiemToan").value;
+//     // var physic = document.getElementById("txtDiemLy").value;
+//     // var science = document.getElementById("txtDiemHoa").value;
+//     // var training = document.getElementById("txtDiemRenLuyen").value;
+//     var id = document.querySelector("#txtMaSV").value;
+//     var name = document.querySelector("#txtTenSV").value;
+//     var type = document.querySelector("#loaiSV").value;
+//     var math = +document.querySelector("#txtDiemToan").value;
+//     var physic = +document.querySelector("#txtDiemLy").value;
+//     var science = +document.querySelector("#txtDiemHoa").value;
+//     var training = +document.querySelector("#txtDiemRenLuyen").value;
 
-    // kiểm tra id có tồn tại chưa
-    for(var i = 0; i < studentArr.length; i++) {
-        if(studentArr[i].id === id) {
-            console.log("Id existed");
-            return;
-        }
-    }
+//     // kiểm tra id có tồn tại chưa
+//     for(var i = 0; i < studentArr.length; i++) {
+//         if(studentArr[i].id === id) {
+//             console.log("Id existed");
+//             return;
+//         }
+//     }
 
-    // tạo đối tượng sinh viên
-    var sinhVien = new Student(id, name, type, math, physic, science, training);
+//     // tạo đối tượng sinh viên
+//     var sinhVien = new Student(id, name, type, math, physic, science, training);
 
-    // push đối tượng sinh viên vào mảng
-    studentArr.push(sinhVien);
+//     // push đối tượng sinh viên vào mảng
+//     studentArr.push(sinhVien);
 
-    saveData();
+//     saveData();
 
-    createTable();
+//     createTable();
 
-    // console.log(studentArr);
-}
+//     // console.log(studentArr);
+// }
 
 // function 2: Hiện danh sách toàn bộ sinh viên
 var createTable = function(data) {
@@ -71,19 +72,32 @@ var createTable = function(data) {
     }
 
     for(var i = 0; i < data.length; i++) {
+        // content += `
+        // <tr>
+        //     <td>${data[i].id}</td>
+        //     <td>${data[i].name}</td>
+        //     <td>${data[i].type}</td>
+        //     <td>9.8</td>
+        //     <td>${data[i].training}</td>
+        //     <td>
+        //         <button onclick="deleteStudent('${data[i].id}')" class="btn btn-danger">Xoa</button>
+        //         <button onclick="getStudentToUpdate('${data[i].id}')" class="btn btn-infor">Sua</button>
+        //     </td>
+        // </tr>
+        // `;
         content += `
         <tr>
-            <td>${data[i].id}</td>
-            <td>${data[i].name}</td>
-            <td>${data[i].type}</td>
+            <td>${data[i].maSinhVien}</td>
+            <td>${data[i].tenSinhVien}</td>
+            <td>${data[i].loaiSinhVien}</td>
             <td>9.8</td>
-            <td>${data[i].training}</td>
+            <td>${data[i].diemRenLuyen}</td>
             <td>
-                <button onclick="deleteStudent('${data[i].id}')" class="btn btn-danger">Xoa</button>
-                <button onclick="getStudentToUpdate('${data[i].id}')" class="btn btn-infor">Sua</button>
+                <button onclick="deleteStudent('${data[i].maSinhVien}')" class="btn btn-danger">Xoa</button>
+                <button onclick="getStudentToUpdate('${data[i].maSinhVien}')" class="btn btn-infor">Sua</button>
             </td>
-            </tr>
-            `;
+        </tr>
+        `;
             // <td>${studentArr[i].calcAverage()}</td>
     }
     // console.log(content);
@@ -101,7 +115,10 @@ var fetchData = function() {
         method: "GET",
     });
     promise.then(function(res) {
-        console.log(res);
+        console.log("res",res);
+        studentArr = res.data;
+        createTable(studentArr);
+        // console.log(studentArr);
     });
     promise.catch(function(err) {
         console.log(err);
@@ -127,14 +144,14 @@ var fetchData = function() {
 fetchData();
 
 // function 3: Xóa sinh viên ra khỏi danh sách
-var deleteStudent = function(id) {
-    var index = findById(id);
-    if(index !== -1) {
-        studentArr.splice(index, 1);
-        saveData();
-        createTable();
-    }
-}
+// var deleteStudent = function(id) {
+//     var index = findById(id);
+//     if(index !== -1) {
+//         studentArr.splice(index, 1);
+//         saveData();
+//         createTable();
+//     }
+// }
 
 // Tìm vị trí của phần tử trong mảng
 var findById = function(id) {
@@ -148,53 +165,53 @@ var findById = function(id) {
 }
 
 // function 4.1: Lấy sinh viên muốn sửa
-var getStudentToUpdate = function(id) {
-    var index = findById(id);
+// var getStudentToUpdate = function(id) {
+//     var index = findById(id);
 
-    document.querySelector("#txtMaSV").value = studentArr[index].id;
-    document.querySelector("#txtTenSV").value = studentArr[index].name;
-    document.querySelector("#loaiSV").value = studentArr[index].type;
-    document.querySelector("#txtDiemToan").value = studentArr[index].math;
-    document.querySelector("#txtDiemLy").value = studentArr[index].physic;
-    document.querySelector("#txtDiemHoa").value = studentArr[index].science;
-    document.querySelector("#txtDiemRenLuyen").value = studentArr[index].training;
+//     document.querySelector("#txtMaSV").value = studentArr[index].id;
+//     document.querySelector("#txtTenSV").value = studentArr[index].name;
+//     document.querySelector("#loaiSV").value = studentArr[index].type;
+//     document.querySelector("#txtDiemToan").value = studentArr[index].math;
+//     document.querySelector("#txtDiemLy").value = studentArr[index].physic;
+//     document.querySelector("#txtDiemHoa").value = studentArr[index].science;
+//     document.querySelector("#txtDiemRenLuyen").value = studentArr[index].training;
 
-    // document.querySelector("txtMaSV").style.backgroundColor = "red";
-    // document.querySelector("txtMaSV").setAttribute("style", "background-color: green");
-    // setAttribute: id, class, style, disabled, ...
+//     // document.querySelector("txtMaSV").style.backgroundColor = "red";
+//     // document.querySelector("txtMaSV").setAttribute("style", "background-color: green");
+//     // setAttribute: id, class, style, disabled, ...
 
-    document.querySelector("#txtMaSV").setAttribute("disabled", true);
-    document.querySelector("#btnAdd").setAttribute("style", "display: none");
-    document.querySelector("#btnUpdate").setAttribute("style", "display: inline");
-} 
+//     document.querySelector("#txtMaSV").setAttribute("disabled", true);
+//     document.querySelector("#btnAdd").setAttribute("style", "display: none");
+//     document.querySelector("#btnUpdate").setAttribute("style", "display: inline");
+// } 
 
 // function 4.2: Lưu thông tin đã chỉnh sửa
-var updateStudent = function() {
-    var id = document.querySelector("#txtMaSV").value;
-    var name = document.querySelector("#txtTenSV").value;
-    var type = document.querySelector("#loaiSV").value;
-    var math = +document.querySelector("#txtDiemToan").value;
-    var physic = +document.querySelector("#txtDiemLy").value;
-    var science = +document.querySelector("#txtDiemHoa").value;
-    var training = +document.querySelector("#txtDiemRenLuyen").value;
+// var updateStudent = function() {
+//     var id = document.querySelector("#txtMaSV").value;
+//     var name = document.querySelector("#txtTenSV").value;
+//     var type = document.querySelector("#loaiSV").value;
+//     var math = +document.querySelector("#txtDiemToan").value;
+//     var physic = +document.querySelector("#txtDiemLy").value;
+//     var science = +document.querySelector("#txtDiemHoa").value;
+//     var training = +document.querySelector("#txtDiemRenLuyen").value;
 
-    var index = findById(id);
-    studentArr[index].name = name;
-    studentArr[index].type = type;
-    studentArr[index].math = math;
-    studentArr[index].physic = physic;
-    studentArr[index].science = science;
-    studentArr[index].training = training;
+//     var index = findById(id);
+//     studentArr[index].name = name;
+//     studentArr[index].type = type;
+//     studentArr[index].math = math;
+//     studentArr[index].physic = physic;
+//     studentArr[index].science = science;
+//     studentArr[index].training = training;
 
-    saveData();
-    createTable();
-    // clear form
-    document.querySelector("#btnReset").click();
+//     saveData();
+//     createTable();
+//     // clear form
+//     document.querySelector("#btnReset").click();
 
-    document.querySelector("#txtMaSV").removeAttribute("disabled");
-    document.querySelector("#btnAdd").setAttribute("style","display: inline");
-    document.querySelector("#btnUpdate").setAttribute("style","display: none");
-}
+//     document.querySelector("#txtMaSV").removeAttribute("disabled");
+//     document.querySelector("#btnAdd").setAttribute("style","display: inline");
+//     document.querySelector("#btnUpdate").setAttribute("style","display: none");
+// }
 
 // function 5: Tìm kiếm sinh viên
 var findStudent = function() {
@@ -253,6 +270,98 @@ var checkText = function(value, errorMessageId) {
 }
 
 
+// -------- POST: add student -------- //
+function addStudent() {
+    // Lấy thông tin người dùng nhập vào lưu vào object có format giốn server quy định
+    var student = new Student();
+    student.maSinhVien = document.getElementById('txtMaSV').value;
+    student.tenSinhVien = document.getElementById('txtTenSV').value;
+    student.loaiSinhVien = document.getElementById('loaiSV').value;
+    student.diemToan = document.getElementById('txtDiemToan').value;
+    student.diemLy = document.getElementById('txtDiemLy').value;
+    student.diemHoa = document.getElementById('txtDiemHoa').value;
+    student.diemRenLuyen = document.getElementById('txtDiemRenLuyen').value;
+    
+    // console.log("student", student);
+
+    // gọi api đưa dữ liệu về server
+    axios({
+        url: "http://svcy.myclass.vn/api/SinhVienApi/ThemSinhVien",    // Đường dẫn api do backend qui định
+        method: "POST", // Phương thức do backend qui định
+        data: student,  // Dữ liệu gửi đến server
+    }).then(function(result) {
+        console.log(result.data);
+        // Sau khi thêm dữ liệu thành công => gọi lại api lấy dữ liệu về
+        fetchData();
+    }).catch(function(error) {
+        console.log(error.response.data);
+    })
+}
+
+function deleteStudent(maSinhVien) {
+    console.log("id",maSinhVien);
+
+    axios({
+        url: "http://svcy.myclass.vn/api/SinhVienApi/XoaSinhVien?maSinhVien=" + maSinhVien,
+        method: "DELETE",
+    }).then(function(result) {
+        console.log("result",result.data);
+        fetchData();
+    }).catch(function(error) {
+        console.log("error",error.response.data);
+    })
+}
+
+function getStudentToUpdate(maSinhVien) {
+    axios({
+        url: "http://svcy.myclass.vn/api/SinhVienApi/LayThongTinSinhVien?maSinhVien=" + maSinhVien,
+        method: "GET"
+    }).then(function(result) {
+        console.log(result.data);
+        var student = result.data;
+        // Lấy dữ liệu đưa lên các input phía trên
+        document.getElementById("txtMaSV").value = student.maSinhVien;
+        document.getElementById("txtTenSV").value = student.tenSinhVien;
+        document.getElementById("txtDiemToan").value = student.diemToan;
+        document.getElementById("txtDiemLy").value = student.diemLy;
+        document.getElementById("txtDiemHoa").value = student.diemHoa;
+        document.getElementById("txtDiemRenLuyen").value = student.diemRenLuyen;
+
+        document.getElementById("btnUpdate").style.display = "inline";
+        document.getElementById("btnAdd").style.display = "none";
+        document.querySelector("#txtMaSV").setAttribute("disabled",true);
+        
+    }).catch(function(error) {
+        console.log(error.response.data);
+    })
+}
+
+function updateStudent() {
+    // Lấy thông tin người dùng nhập từ giao diện
+    var student = new Student();
+    student.maSinhVien = document.getElementById('txtMaSV').value;
+    student.tenSinhVien = document.getElementById('txtTenSV').value;
+    student.loaiSinhVien = document.getElementById('loaiSV').value;
+    student.diemToan = document.getElementById('txtDiemToan').value;
+    student.diemLy = document.getElementById('txtDiemLy').value;
+    student.diemHoa = document.getElementById('txtDiemHoa').value;
+    student.diemRenLuyen = document.getElementById('txtDiemRenLuyen').value;
+
+    document.getElementById("btnUpdate").style.display = "none";
+    document.getElementById("btnAdd").style.display = "inline";
+    document.querySelector("#txtMaSV").removeAttribute("disabled");
+
+    axios({
+        url: "http://svcy.myclass.vn/api/SinhVienApi/CapNhatThongTinSinhVien?maSinhVien=" + student.maSinhVien,
+        method: "PUT",
+        data: student // Định dạng object theo backend
+    }).then(function(result) {
+        console.log("result",result.data);
+        fetchData();
+    }).catch(function(error) {
+        console.log("error",error.response.data);
+    })
+}
 
 // --------------------------------------------------------- //
 // // Có 2 cách khởi tạo function
