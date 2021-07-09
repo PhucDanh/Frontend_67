@@ -1,0 +1,17 @@
+.home {
+    display: block;
+}
+.home-body {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+SideBar {
+    /* width: 30%; */
+    /* flex-grow: 3; */
+}
+Content {
+    /* width: 70%; */
+    flex-grow: 7;
+}
