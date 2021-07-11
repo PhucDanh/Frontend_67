@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import Home from './Ex1/home';
 import Databinding from './Components/databinding';
+import CarExercise from './Ex2/indexEx2';
+import FilmExercise from './Ex3/indexEx3';
 
 function App() {
   return (
@@ -19,9 +21,10 @@ function App() {
         >
           Learn React
         </a>
-      </header> */}
-      <Home></Home>
-      <Databinding></Databinding>
+      </header> */}     {/* <Home></Home> */}
+      {/* <Databinding></Databinding> */}
+      {/* <CarExercise></CarExercise> */}
+      <FilmExercise></FilmExercise>
     </div>
   );
 }

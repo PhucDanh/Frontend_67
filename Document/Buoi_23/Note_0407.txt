@@ -1,0 +1,4 @@
+Lợi ích của single page web:
+- Nhanh gọn hơn, 1 component có thể dùng nhiều nơi
+- Dễ sửa chửa và bảo trì
+- 

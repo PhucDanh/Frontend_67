@@ -1,0 +1,3 @@
+React sử dụng cơ chế strict mode, loại bỏ đối tượng window => khắc phục bằng cách dùng arrow function
+state là 1 thuộc tinhs có sẵn trong component => nếu 1 trong các thuộc tính của state thay đổi thì component sẽ gọi hàm render lại 1 giao diện mới 
+Cơ chế trong react: immutable => Không chỉnh sửa state 1 cách trực tiếp mà phải sử dụng method của nó
