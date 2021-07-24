@@ -1,9 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
-import Home from './Ex1/home';
-import Databinding from './Components/databinding';
-import CarExercise from './Ex2/indexEx2';
-import FilmExercise from './Ex3/indexEx3';
+import Home from './BusTicket/Home';
+// import Home from './DressingRoom/Home';
+// import Home from './Ex1/home';
+// import Databinding from './Components/databinding';
+// import CarExercise from './Ex2/indexEx2';
+// import FilmExercise from './Ex3/indexEx3';
+// import Homes from './DemoProps/Home';
+// import Home from './ShoppingCart/Home';
 
 function App() {
   return (
@@ -24,7 +28,11 @@ function App() {
       </header> */}     {/* <Home></Home> */}
       {/* <Databinding></Databinding> */}
       {/* <CarExercise></CarExercise> */}
-      <FilmExercise></FilmExercise>
+      {/* <FilmExercise></FilmExercise> */}
+      {/* <Homes></Homes> */}
+      {/* <Home></Home> */}
+      {/* <Home></Home> */}
+      <Home></Home>
     </div>
   );
 }
