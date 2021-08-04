@@ -269,11 +269,35 @@ const initialProduct = {
             imgSrc_jpg: './assets/imgDressingRoom/background/background7_show.jpg',
             imgSrc_png: './assets/imgDressingRoom/background/background7.jpg',
         },
-    ]
+    ],
+    selectedProducts: {
+        // type: img
+    }
 }
 
 const reducer = (state = initialProduct, action) => {
-    return state;
+    switch(action.type) {
+        case "SET_PRODUCT":
+            // state.selectedProducts[action.payload.type] = action.payload.img;
+            /** 
+             *  - Do cơ chế Shallow Comparison => Redux không nhận ra sự thay đổi của object và mảng 
+             * => không sử dụng như trên đc 
+             *  - Khi dùng Spread Operation nếu key trùng nhau thì cái sau ghi đè cái trước
+             */
+            state.selectedProducts = {
+                ...state.selectedProducts, 
+                [action.payload.type]: action.payload.img
+            }
+            return {...state}
+        default:
+            return {...state}
+    }
 } 
 
 export default reducer;
+
+/**
+ * 1. Component productItem, nhán nút thử => dispatch action (SET_PRODUCT)
+ * 2. reducer, xây dựng cách xử lý action
+ * 3. Component model, connect lên store, lấy selectedProducts xuống
+ */ 
