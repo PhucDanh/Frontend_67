@@ -4,10 +4,12 @@ import { NavLink } from "react-router-dom"
 import { AppBar, Toolbar, IconButton, Typography, withStyles } from "@material-ui/core"
 import ImportContactsIcon from '@material-ui/icons/ImportContacts';
 import { styles } from "./style";
+import { connect } from 'react-redux';
+import { Fragment } from 'react';
 
  class Header extends Component {
     render() {
-        console.log(this.props.classes);
+        // console.log(this.props.classes);
         const { tittle, navLink, activeNavLink } = this.props.classes;
         return (
             <div>
@@ -21,8 +23,19 @@ import { styles } from "./style";
                             E-learning
                         </Typography>
                         <NavLink className={navLink} activeClassName={activeNavLink} exact to="/">Home</NavLink>
-                        <NavLink className={navLink} activeClassName={activeNavLink} to="/signin">Sign In</NavLink>
-                        <NavLink className={navLink} activeClassName={activeNavLink} to="/signup">Sign Up</NavLink>
+
+                        {
+                            this.props.me ? (
+                                <span className={`${navLink} ${activeNavLink}`}>Hello, {this.props.me.hoTen}</span>
+                            ) : (
+                                <Fragment>
+                                    <NavLink className={navLink} activeClassName={activeNavLink} to="/signin">Sign In</NavLink>
+                                    <NavLink className={navLink} activeClassName={activeNavLink} to="/signup">Sign Up</NavLink>
+                                </Fragment>
+                            )
+                        }
+
+                        
                     </Toolbar>
                 </AppBar>
             </div>
@@ -30,4 +43,6 @@ import { styles } from "./style";
     }
 }
 
-export default withStyles(styles)(Header)
+const mapStateToProps = (state) => ({me: state.me})
+ 
+export default connect(mapStateToProps)(withStyles(styles)(Header))
