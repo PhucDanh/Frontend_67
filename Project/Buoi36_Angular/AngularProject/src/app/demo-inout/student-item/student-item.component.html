@@ -1,0 +1,14 @@
+<div class="card p-3">
+    <h5>Tên: {{ student.name }}</h5>
+    <h6>Tuổi: {{ student.age }}</h6>
+    <h6>Lớp: {{ className }}</h6>
+    <button (click)="handleSelectMonitor()" class="btn btn-success mb-2">
+        Chọn lớp trưởng
+    </button>
+    <button (click)="handleSelectViceMonitor()" class="btn btn-info mb-2">
+        Chọn lớp phó
+    </button>
+    <button (click)="handleSelectQualityStudent()" class="btn btn-danger">
+        Chọn sinh viên CLC
+    </button>
+</div>

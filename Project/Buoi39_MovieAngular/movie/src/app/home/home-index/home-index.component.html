@@ -1,0 +1,11 @@
+<h1 class="mat-display-2" style="text-align: center;">Danh sách phim</h1>
+
+<div class="container">
+    <div fxLayout="row wrap" fxLayoutGap="20px">
+        <div fxFlex="25%" *ngFor="let item of movieList">
+            <app-movie-item [movie]="item"></app-movie-item>
+        </div>
+    </div>
+</div>
+
+<button mat-raised-button (click)="handleCreateMovie()"> Thêm phim </button>

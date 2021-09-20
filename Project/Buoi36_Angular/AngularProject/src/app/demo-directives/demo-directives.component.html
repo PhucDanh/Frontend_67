@@ -1,0 +1,35 @@
+<!-- Demo Ng If: ẩn hiện phần tử -->
+<p *ngIf="isFine; else elseContent">Go to Cybersoft</p>
+<!-- <p *ngIf="!isFine">Go to Cybercore</p> -->
+<ng-template #elseContent>
+    <p>Go to Cybercore</p>
+</ng-template>
+
+<button (click)="handleMakeDecision(true)">Fine</button>
+<button (click)="handleMakeDecision(false)">Sick</button>
+<br>
+<br>
+<hr>
+
+<!-- Demo Ng Switch -->
+<select (change)="handleChangeMonth()" [(ngModel)]="month">
+    <option value="0">Tháng 0</option>
+
+    <ng-container *ngIf="isFine">
+        <option value="1">Tháng 1</option>
+        <option value="2">Tháng 2</option>
+        <option value="3">Tháng 3</option>
+        <option value="4">Tháng 4</option>
+    </ng-container>
+</select>
+<div [ngSwitch]="month">
+    <p *ngSwitchCase="1">Tháng 1 có 31 ngày</p>
+    <p *ngSwitchCase="2">Tháng 2 có 28 ngày</p>
+    <p *ngSwitchCase="3">Tháng 3 có 31 ngày</p>
+    <p *ngSwitchCase="4">Tháng 4 có 30 ngày</p>
+    <p *ngSwitchDefault>Tháng không hợp lệ</p>
+</div>
+
+<!-- Demo Attribute Directives -->
+<!-- Demo ngClass: Add class vào theo 1 điều kiện -->
+<button class="btn btn-secondary" [ngClass]="{'btn-success': isBooking}" (click)="handleSelect()">Ghế 1</button>

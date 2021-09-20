@@ -1,0 +1,42 @@
+<div class="container">
+  <h1 class="title mat-display-2">Đăng ký</h1>
+
+  <!-- html5 attribute: required, minlength, maxlength, min, max, email, pattern -->
+  <form #signUpForm="ngForm" (submit)="handleSubmitSignUp()">
+    <mat-form-field class="form-group" appearance="outline">
+      <mat-label>Tài Khoản</mat-label>
+      <input #account="ngModel" matInput name="taiKhoan" ngModel required/>
+      <mat-error *ngIf="account?.errors?.required">Vui lòng nhập tài khoản</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field class="form-group" appearance="outline">
+      <mat-label>Mật khẩu</mat-label>
+      <input #password="ngModel" matInput name="matKhau" ngModel type="password" required minlength="8" maxlength="16"/>
+      <mat-error *ngIf="password?.errors?.required">Vui lòng nhập mật khẩu</mat-error>
+      <mat-error *ngIf="password?.errors?.minlength || password?.errors?.maxlength ">Mật khẩu từ 8-16 kí tự</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field class="form-group" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input #email="ngModel" matInput name="email" ngModel required email/>
+      <mat-error *ngIf="email?.errors?.required">Vui lòng nhập email</mat-error>
+      <mat-error *ngIf="email?.errors?.email">Vui lòng nhập đúng định dạng email</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field class="form-group" appearance="outline">
+      <mat-label>Họ tên</mat-label>
+      <input #fullName="ngModel" matInput name="hoTen" ngModel required />
+      <mat-error *ngIf="fullName?.errors?.required">Vui lòng nhập họ tên</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field class="form-group" appearance="outline">
+      <mat-label>Số ĐT</mat-label>
+      <input matInput #phone="ngModel" name="soDt" ngModel required pattern="^[0-9]+$"/>
+      <mat-error *ngIf="phone?.errors?.pattern">SDT không đúng định dạng</mat-error>
+    </mat-form-field>
+
+    <div class="btn-group">
+      <button mat-raised-button color="primary">Đăng ký</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="row">
+        <div class="col-7">
+            <app-seat [seat]="item" *ngFor="let item of seats" (bookSeat)="setBookingSeat($event)"></app-seat>
+        </div>
+        <div class="col-5">
+            Danh sách ghế đang đặt [0]]
+            <p *ngFor="let item of bookingSeat">
+                Ghế: {{ item.SoGhe }}  Giá: {{ item.Gia }}
+                <span class="text-warning" style="cursor: pointer" (click)="cancelSeat(item.SoGhe)">Hủy</span>
+            </p>
+        </div>
+    </div>
+</div>

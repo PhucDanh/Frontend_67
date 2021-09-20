@@ -1,0 +1,23 @@
+<form action="">
+    <input placeholder="Mã SP" name="productId" [(ngModel)]="productId">
+    <input placeholder="Tên SP" name="productName" [(ngModel)]="productName">
+    <input placeholder="Giá SP" name="productPrice" [(ngModel)]="productPrice">
+    <button type="button" (click)="handleAddProduct()">Thêm sản phẩm</button>
+</form>
+
+<table class="table">
+    <thead>
+        <th>STT</th>
+        <th>Mã SP</th>
+        <th>Tên SP</th>
+        <th>Giá</th>
+    </thead>   
+    <tbody>
+        <tr [ngClass]="{'bg-secondary': i % 2 === 1 }" *ngFor="let item of productLists; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.price }}</td>
+        </tr>
+    </tbody> 
+</table>

@@ -1,0 +1,6 @@
+<button class="btn btn-secondary m-2" style="width: 40px" (click)="handleBookSeat()" 
+[ngClass]="{ 'btn-success' : isBooking, 'btn-danger' : seat.TrangThai }"
+[disabled]="seat.TrangThai"
+>
+    {{ seat.SoGhe }}
+</button>

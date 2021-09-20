@@ -1,0 +1,24 @@
+<p>sign-in works!</p>
+<div class="container">
+    <h1 class="title mat-display-2">Đăng nhập</h1>
+  
+    <!-- html5 attribute: required, minlength, maxlength, min, max, email, pattern -->
+    <form #signInForm="ngForm" (submit)="handleSubmitSignIn()">
+      <mat-form-field class="form-group" appearance="outline">
+        <mat-label>Tài Khoản</mat-label>
+        <input #account="ngModel" matInput name="taiKhoan" ngModel required/>
+        <mat-error *ngIf="account?.errors?.required">Vui lòng nhập tài khoản</mat-error>
+      </mat-form-field>
+      
+      <mat-form-field class="form-group" appearance="outline">
+        <mat-label>Mật khẩu</mat-label>
+        <input #password="ngModel" matInput name="matKhau" ngModel type="password" required minlength="8" maxlength="16"/>
+        <mat-error *ngIf="password?.errors?.required">Vui lòng nhập mật khẩu</mat-error>
+        <mat-error *ngIf="password?.errors?.minlength || password?.errors?.maxlength ">Mật khẩu từ 8-16 kí tự</mat-error>
+      </mat-form-field>
+  
+      <div class="btn-group">
+        <button mat-raised-button color="primary">Đăng nhập</button>
+      </div>
+    </form>
+  </div>

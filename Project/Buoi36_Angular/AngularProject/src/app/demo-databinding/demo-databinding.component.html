@@ -1,0 +1,36 @@
+<p>demo-databinding works!</p>
+
+<!-- INTERPOLATION BINDING -->
+<h3>Fullname: {{ fullname }}</h3>
+<h3>Age: {{ age }}</h3>
+
+<!-- PROPERTY BINDING -->
+<input type="text" [value]="fullname">
+<br>
+<img [src]="imgSrc" alt="">
+
+<div [innerHTML]="description"></div>
+
+<!-- EVENT BINDING -->
+<button (click)="handleShowMessage()">Show Message</button>
+<br>
+<br>
+<br>
+<input [value]="fullname" (input)="handleChangeName($event)"> 
+<br>
+<br>
+<br>
+<label for="">Age</label>
+<!-- Preference -->
+<input placeholder="age" [value]="age" #ageInput>
+<button (click)="handleChangeAge(ageInput.value)">Change</button>
+<br>
+<br>
+
+<!-- TWO WAY BINDING -->
+<!-- Ở trên chúng ta đã xây dựng 1 two way binding fake:
+- Nhập vô input -> Fullname
+- Lấy Fullname -> setInput
+=> Angular đã xây dựng sẵn two-way binding -->
+
+<input [(ngModel)] = "description">
