@@ -23,10 +23,6 @@ export class DetailIndexComponent implements OnInit {
         params: {
           MaPhim: movieId,
         },
-        headers: {
-          TokenCybersoft:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJGcm9udCBFbmQgNjciLCJIZXRIYW5TdHJpbmciOiIyOS8wMS8yMDIyIiwiSGV0SGFuVGltZSI6IjE2NDM0MTQ0MDAwMDAiLCJuYmYiOjE2MTc1NTU2MDAsImV4cCI6MTY0MzU2MjAwMH0.N1IDGkovxIU1E2CjtI_QtEJksOO3lxZxuIwXABaa45w',
-        },
       }).subscribe((res: any) => {
         console.log("movie detail",res);
         this.movieSV.setMovieDetail(res.content);

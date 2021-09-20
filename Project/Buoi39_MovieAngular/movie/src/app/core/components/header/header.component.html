@@ -5,7 +5,7 @@
         </button>
         <span>Booking Ticket</span>
         <span style="flex-grow: 1;" class="example-spacer"></span>
-        <button mat-button *ngIf="me; else authBtns"> Hello, ...</button>
+        <button mat-button *ngIf="me; else authBtns"> Hello, {{ me.hoTen }}</button>
         <button mat-button routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/">Home </button>
         <ng-template #authBtns>
             <button mat-button routerLinkActive="active" routerLink="/signIn">Sign In </button>

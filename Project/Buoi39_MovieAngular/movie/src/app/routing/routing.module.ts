@@ -4,9 +4,10 @@ import { DetailIndexComponent } from '../detail/detail-index/detail-index.compon
 import { HomeIndexComponent } from '../home/home-index/home-index.component';
 import { SignInComponent } from '../auth/sign-in/sign-in.component';
 import { SignUpComponent } from '../auth/sign-up/sign-up.component';
+import { PrivateGuard } from '../guards/private.guard';
 
 const routes: Routes = [
-  { path: "", component: HomeIndexComponent},
+  { path: "", component: HomeIndexComponent, canActivate: [PrivateGuard]},
   { path: "detail/:id", component: DetailIndexComponent},
   { path: "signIn", component: SignInComponent},
   { path: "signUp", component: SignUpComponent}

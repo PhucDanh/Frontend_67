@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthDataService } from 'src/app/services/auth-data.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { AuthDataService } from 'src/app/services/auth-data.service';
 export class SignInComponent implements OnInit {
   @ViewChild("signInForm") signInForm!: NgForm;
 
-  constructor(private _http: HttpClient, private _authSV: AuthDataService) { }
+  constructor(private _http: HttpClient, private _authSV: AuthDataService, private _router: Router) { }
 
   handleSubmitSignIn(): void {
     if(this.signInForm.invalid) return;
@@ -31,7 +32,8 @@ export class SignInComponent implements OnInit {
     ).subscribe((res: any) => {
       console.log("sign in res",res);
       this._authSV.setMe(res.content);
-      localStorage.setItem("token sign in", res.content.accessToken);
+      localStorage.setItem("token", res.content.accessToken);
+      this._router.navigate(["/"]);
     }, (err) => {
       console.log("sign in err", err)
     })
