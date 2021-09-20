@@ -1,0 +1,13 @@
+- Directives:
+	+ Components
+	+ Structural directives
+	+ Attribute directives
+* Structual directives:
+	- *ngIf (else): <p *ngIf="isFine; else elseContent">Go to Cybersoft</p> (elseContent là 1 reference cho 1 thẻ khác)
+	- *ngSwitch
+	- *ngFor
+* Attribute directives:
+	- *ngClass: cho phép add class vào theo điều kiện
+	- *ngStyles
+** Note:
+	- Cannot use multiple directives on one tag => chia thẻ để khắc phục và có thể dùng <ng-container /> có tác dụng như <Fragment/> bên react 

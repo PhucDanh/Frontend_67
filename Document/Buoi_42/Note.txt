@@ -1,0 +1,31 @@
+<----------------------------- LIFE CYCLE IN ANGULAR ----------------------------->
+* Interface OnInit => method ngOnInit:
+	- Là method của interface OnInit => import { OnInit } from '@angular/core';
+	- DidMount của react chạy sau khi render, ngOnInit chạy song song với render
+* Interface AfterViewInit => method ngAfterViewInit:
+	- Thực hiện sau khi render xong giao diện
+* Interface OnChanges => method ngOnChanges(changes: SimpleChanges):
+	- Tương tự như DidUpdate, đổi bất kì thì giao diện đều update lại
+* Interface OnDestroy => method ngOnDestroy:
+	- Tương tự WillUnMount react: thực hiện khi component bị hủy
+	- Thông thường dùng để thực hiện các tác vụ dọn dẹp các thao tác chạy nền như: setInterval, Observable.subscribe, ...
+	- Hủy 1 subscriber:
+		+ Tạo 1 biến subscription để luu lại subscriber : movieListSubscription: Subscription | undefined;
+		+ Gán subsciber cho biến: this.movieListSubscription = this.movieSV.movieList.subscribe((movies) => { this.movieList = movies; });
+		+ Trong ngOnDestroy tiến hành unsubscribe: this.movieListSubscription?.unsubscibe();
+		=> Optional Changing: Cho phép kiểm tra trước data rồi mới call để không bị báo lỗi undefined 
+		==> Các phiên bản mới của angular đã tự động unsubscribe
+
+<----------------------------- FORM ----------------------------->
+1. Import module FormsModule vào  module quản lý component
+2. Biến form thành 1 đối tượng ngForm của angular: <form #signUpForm="ngForm" (submit)="handleSubmit()">
+3. Gán name cho mỗi input follow theo dữ liệu trả về backend và gán ngModel: <input #account="ngModel" matInput name="taiKhoan" ngModel/>
+	=> Biến input thành 1 controls của form
+ 	==> Thuận tiện cho việc validation và show error
+	===> <mat-error *ngIf="signUpForm.form.controls.taiKhoan?.errors?.required">
+	===> <mat-error *ngIf="account?.errors?.required"> 
+4. Trong component.ts dom tới reference form vừa tạo và gán biến cho nó:
+	@ViewChild("signUpForm") signUpForm!: NgForm;
+
+* Validation Form:
+- Handle bằng các attribute do html5 cung cấp: required, minlength, maxlength, min, max, email, pattern (regular expression)

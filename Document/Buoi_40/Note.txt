@@ -1,0 +1,38 @@
+1. Cách chia source code
+2. Phân tách modulé
+3. Routing
+4. Service
+5. HTTPClientModule
+6. Form và validation
+7. Material
+8. Guard
+9. Life Cycle
+10. Pipe
+
+<------------------------ ROUTING ------------------------>
+1. Tạo module routing riêng:
+- import { RouterModule, Routes } from '@angular/router';
+- Tạo variables: const routes: Routes = [{path: "", component: HomeIndexComponent},{}]
+- @NgModule ({ imports: [RouterModule.forRoot(routes),] })
+2. Qua app module import module routing vào để sử dụng:
+- import { RoutingModule } from './routing/routing.module';
+- App HTML: <router-outlet></router-outlet> => triển khai routing theo đường dẫn nhưng vì component này là của module RouterModule nên cần import vào appmodule
+- @NgModule ({ imports: [RoutingModule, RouterModule] })
+3. Muốn nhấn thẻ <a> để chuyển trang
+- <a routerLink="/">Home</a> <a routerLink="/signIn">Sign In</a>
+- Vì routerLink thuộc RouterModule nên cần phải inport vào module quản lý component chứa file HTML cần dùng
+
+<------------------------ MATERIAL ANGULAR------------------------>
+https://material.angular.io/guide/getting-started
+- Có 2 cách gọi 1 thẻ:
+	+ Gọi thẳng tên thẻ: @Component({ selector: "app-header"})
+	+ Gọi theo kiểu attribute: @Component({ selector: "[app-header]" }) => <div app-header>
+	=> Khi này nội dung của HTML của component sẽ được đổ vào thẻ <div>
+- Cách dùng:
+	+ Tìm module cần dùng => HTMl => Copy code
+	+ Chuyển sang tab API => import vào module cần sử dụng
+- Flex Layout Module: https://github.com/angular/flex-layout
+
+
+** Note: 
+- Thông thường sẽ chia mỗi page thành 1 module để quản lý

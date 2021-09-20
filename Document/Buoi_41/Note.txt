@@ -1,0 +1,64 @@
+* Observable: tương ứng với đối tượng promise trong axios
+	
+* Promise:
+	- Promise = axios() => Promise.then().catch()
+	- Bên trong axios khi chạy:
+	+ const promise = new Promise((resolve,reject) => {setTimeout(()=>{resolve("data"); reject("err")},2000)})
+	+ promise.then((res)=>{})
+	+ promise.catch((err)=>{})
+
+* Service: tương đương với store bên react, không nằm trong bất kì module nào, trong 1 project Angular có thể có nhiểu service
+	- Lấy service xuống module để sử dụng: sử dụng cơ chế Dependency Injection
+	1. Tạo 1 folder services => tạo service movie => ng g s movie => trong service movie tạo biến chứa data (movieList = [data])
+	2. Đến component cần dùng import MovieService:
+		- Sử dụng cơ chế Dependency Injection để đẩy service vào component: constructor(private movieSV: MovieService) { }
+		=> Lúc này movieSV sẽ đại diện cho MovieService và chứa tất cả data của service đó
+		- Tạo biến hứng data cần dùng từ movieSV: movieList: any;
+		=> Lưu data vào biến hứng: ngOnInit({ this.movieList = this.movieSV.movieList}) 
+		==> Vì array là 1 biến tham chiếu (pointer) và ngOnInit chỉ chạy 1 lần (DidMount) nên biến movieList sẽ VÔ TÌNH luôn tham chiếu đến địa chỉ ban đầu
+		===> Khi thêm thêm phim vào như sau: addMovie = (movie): any => { this.movie.movieList.push(movie)} => thì VÔ TÌNH HTML sẽ luôn render đúng vì ban đầu đã tham chiếu đến đúng địa chỉ 
+		(push vào không tạo mảng mới, không đổi địa chỉ)
+		====> Khi lưu biến theo kiểu Destructure của ES: addMovie = (movie): any => { this.movie.movieList = [...this.movie.movieList,movie]}
+		=====> Khi này this.movie.movieList sẽ luôn đổi địa chỉ tham chiếu vì sau mỗi lần add như trên sẽ luôn sinh ra mảng mới vs địa chỉ mới
+		======> Khi đó, HTML sẽ không render ra những phim vừa mới add
+		** Để khắc phuc tình trạng trên và tăng khả năng theo dõi biến trong service:
+			+ Sử dụng function BehaviorSubject của rxjs để quản lý: movieList = new BehaviorSubject([data])
+			=> Khi này movieList là 1 đối tượng BehaviorSubject => Để lấy data: movieList.getValue()
+			+ Tạo một mảng mới để add thêm movie theo Destructure: newMovieList = [...this.movieList.getValue(),movie]
+			+ Add mảng mới này vào object movieList: this.movieList.next(newMovieList)
+			+ Khi đó, ở dưới component sử dụng service, muốn lấy data ta làm như sau:
+				ngOnInit({ this.movieSV.movieList.subscriber((movies) => { this.movieList = movies })});
+			==> Mặc dù OnInit chỉ chạy lần đầu nhưng khi gọi subscriber thì đồng nghĩa với việc chương trình đang theo dõi đối tượng movieList 
+			Nên nếu có bất kì thay đổi trong data của service thì hàm này sẽ được thực thi 
+	- Chỉnh sửa data trên service:
+		+ Trên Service tạo hàm handle thực hiện tác vụ mong muốn => Tại component sử dụng service thì gọi hàm đó chạy thông qua biến Dependency Injection (movieSV) 
+
+* Call API (HttpClient)
+	1. Import module HttpClient vào module muốn dùng: import { HttpClientModule } from '@angular/common/http';
+	2. Import service httpClient vào component muốn dùng: import { HttpClient } from '@angular/common/http';
+	3. Inject http vào hàm constructor: constructor(private movieSV: MovieService, private http: HttpClient) { }
+	4. Tạo hàm handle việc call API và gọi http: 
+		fetchMovie = (): void => {
+    		    this.http.get(
+      		    `http://movieapi.cyberlearn.vn/api/QuanLyPhim/LayDanhSachPhim`,
+      		    {
+        		params: {
+          		maNhom:"GP01",
+        	    }
+      		}).subscribe((res: any) => {
+        	    console.log(res);
+        	    this.movieSV.setMovieList(res.content);
+      		}, (err) => {
+        	    console.log(err)
+      		})}
+
+* Lấy tham số từ đường dẫn: Home-index sẽ có button hiện detail phim và đường dẫn của detail sẽ chứa tham số
+	1. Import activateRoute: import { ActivatedRoute } from '@angular/router';
+	2. inject component đó vào component muốn sử dụng: constructor(private activateRoute: ActivatedRoute) { }
+	3. Tạo biến hứng: const movieId = this.activateRoute.snapshot.params.id(); => chỉ là 1 object
+	=> Nếu không có snapshot thì this.activateRoute.param là 1 observable
+
+
+* Life Cycle trong Angular:
+- Mỗi LifeCycle tương ứng vs 1 interface, cần phải implements interface tương ứng vs lifecycle và khai báo method tương ứng"
+	+ OnInit: tương đương vs DidMount

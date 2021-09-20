@@ -1,0 +1,13 @@
+- Cách tạo 1 component và sự phụ thuộc của component vào module
+- Dàn 1 component mẫu
+**Data binding in Angular:
+	- One-way binding:
+		+ INTERPOLATION binding: {{}}
+		+ PROPERTY binding: [property] = "variable"
+		+ EVENT binding: (event)="function()"
+	- Two-way binding: [(ngModel)] = "variables"
+**Note: 
+	- Trong event binding không phải lúc nào event.target.values cũng có giá trị (vidu: button)
+		=> Gán kiểu: this.fullname = (event.target as HTMLInputElement).value;
+	- Đối với các event không có value thì tạo function với giá trị đầu vào (handleChangeAge = (value: String): void => {this.age = +value;})
+		=> Sử dụng preference sẽ đại diện cho 1 thẻ: <input placeholder="age" [value]="age" #ageInput> => #ageInput là preference của thẻ input này

@@ -1,0 +1,2 @@
+Angular: Cybersoft@2020
+Typescript: cybersoft@123

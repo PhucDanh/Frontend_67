@@ -1,0 +1,17 @@
+<----------------------- Deploy App To Server ----------------------->
+* VERCEL server: https://vercel.com/login => Sign up with Github, Gitlap, mail
+
+* Chuyển trang:
+	- Inject service router vào component signIn: constructor(private _router: Router) { }
+	- Gọi method navigate để chuyển path sau khi submit đăng nhập thành công: this._router.navigate(["/"]);
+
+* INTERCEPTOR: Giống với middleware bên react. nắm giữa frontend và backend, chặn request và add token
+	- Tạo 1 file interceptor: token.interceptor.ts
+	- Bỏ đính token trong những request call API
+	- Khai báo trong Providers của app module: providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
+
+* GUARD: 
+	- Tạo guard: cd tới service => ng g g  private
+	- Tạo logic trong guard
+	- Sử dụng guard đối với page muốn bảo vệ (trong trường hợp này là page home): 
+		const routes: Routes = [{ path: "", component: HomeIndexComponent, canActivate: [PrivateGuard]},]

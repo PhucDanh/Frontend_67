@@ -1,0 +1,21 @@
+<------------ GIAO TIẾP GIỮA CÁC COMPONENT ------------>
+* @Input: là cú pháp truyền dữ liệu từ component cha sang component con
+	- Parent: 
+		+ TS:	students: { name: string; age: number }[] = []; 	className: string = 'VLH1';
+		+ HTML:	[student]="students";					[classname]="classname"
+	- Children: 	@Input() student!: { name: string; age: number }; 	@Input() className: string | undefined;
+* #Output: là cú pháp truyền dữ liệu từ component con sang component cha thông qua sự kiện được khai báo bởi EventEmitter
+	- Đẩy dữ liệu từ con:
+		+ TS: 	@Output selectMonitor = new EventEmitter();	handleSelectMonitor(): {this.selectMonitor.emit(this.student.name)}
+		+ HTML: <button (click)="handleSelectMonitor()" class="btn btn-success mb-2">
+	- Tạo biến hứng ở cha:
+		+ TS: 	selectedMonitor: string|undefined;		setMonitor(value: string): void { this.selectedMonitor = value;}
+		+ HTML:	<app-student-item (selectMonitor)="setMonitor($event)"></app-student-item>
+* ViewChild: dùng để truy vấn DOM đến component hoặc thẻ trong HTML.
+	- @ViewChild trả về 1 đối tượng như: ElementRef, TemplateRef, ViewRef, ComponentRef, và ViewContainerRef
+* ViewChildren: dùng để DOM đến danh sách các thẻ hoặc các component có cùng selector
+
+** Note: 
+	- @Input() className: string | undefined; => khai báo undefined là để phòng trường hợp không nhận được giá trị vẫn không báo lỗi
+	=> có thể dùng tính năng của ES cho trường hợp này
+	- Khi khai báo 1 kiểu dữ liệu phức tạp nhiều lần ta có thể dùng Interface khai báo riêng rồi import vào nơi cần sử dụng
